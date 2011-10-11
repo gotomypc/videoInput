@@ -1,5 +1,7 @@
 
+#ifdef _MSC_VER
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
+#endif
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
@@ -277,7 +279,9 @@ void __RPC_USER MIDL_user_free( void * );
 #include <ddraw.h>
 #include <d3d.h>
 #include <d3drm.h>
+#ifdef _MSC_VER
 #include <urlmon.h>
+#endif
 #if 0
 // Bogus definition used to make MIDL compiler happy
 typedef void DDSURFACEDESC;
@@ -1651,10 +1655,10 @@ class DXPMSAMPLE;
 class DXBASESAMPLE
 {
 public:
-    BYTE Blue;
-    BYTE Green;
-    BYTE Red;
     BYTE Alpha;
+    BYTE Red;
+    BYTE Green;
+    BYTE Blue;
     DXBASESAMPLE() {}
     DXBASESAMPLE(const BYTE alpha, const BYTE red, const BYTE green, const BYTE blue) :
         Alpha(alpha),

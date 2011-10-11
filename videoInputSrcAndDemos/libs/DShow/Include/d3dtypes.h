@@ -23,7 +23,9 @@
 #include <float.h>
 #include "ddraw.h"
 
+#ifdef _MSC_VER
 #pragma warning(disable:4201) // anonymous unions warning
+#endif
 #if defined(_X86_) || defined(_IA64_)
 #pragma pack(4)
 #endif
@@ -2113,7 +2115,9 @@ typedef enum _D3DVERTEXBLENDFLAGS D3DVERTEXBLENDFLAGS;
 #endif //(DIRECT3D_VERSION < 0x0800)
 
 #pragma pack()
+#ifdef _MSC_VER
 #pragma warning(default:4201)
+#endif
 
 #endif /* _D3DTYPES_H_ */
 

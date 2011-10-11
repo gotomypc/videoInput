@@ -8,7 +8,9 @@
 //------------------------------------------------------------------------------
 
 // Disable some compiler warnings
+#ifdef _MSC_VER
 #pragma warning(disable: 4097 4511 4512 4514 4705)
+#endif
 
 
 #if !defined AVIRIFF_H
@@ -177,7 +179,9 @@ typedef struct _avistreamheader {
 // nothing for midi streams
 
 
+#ifdef _MSC_VER
 #pragma warning(disable:4200)
+#endif
 //
 // structure of old style AVI index
 //

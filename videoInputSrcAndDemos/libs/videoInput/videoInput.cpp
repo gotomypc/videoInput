@@ -275,9 +275,9 @@ void videoDevice::NukeDownstream(IBaseFilter *pBF){
 // ---------------------------------------------------------------------- 
 
 void videoDevice::destroyGraph(){
-	HRESULT hr = NULL;
- 	int FuncRetval=0;
- 	int NumFilters=0;
+	HRESULT hr 			= 0;
+ 	//int FuncRetval=0;
+ 	//int NumFilters=0;
 
 	int i = 0;
 	while (hr == NOERROR)	
@@ -293,7 +293,7 @@ void videoDevice::destroyGraph(){
 		IBaseFilter * pFilter = NULL;
 		if (pEnum->Next(1, &pFilter, &cFetched) == S_OK)
 		{
-			FILTER_INFO FilterInfo={0};
+			FILTER_INFO FilterInfo;
 			hr = pFilter->QueryFilterInfo(&FilterInfo);
 			FilterInfo.pGraph->Release();
 
@@ -342,7 +342,7 @@ videoDevice::~videoDevice(){
 		return;
 	}
 		
-	HRESULT HR = NULL;
+	HRESULT HR = 0;
 	
 	//Stop the callback and free it
     if( (sgCallback) && (pGrabber) )
@@ -1028,7 +1028,7 @@ bool videoInput::getVideoSettingFilter(int deviceID, long Property, long &min, l
 	if( !isDeviceSetup(deviceID) )return false;
 
 	HRESULT hr;	
-	bool isSuccessful = false;
+	//bool isSuccessful = false;
 	
 	videoDevice * VD = VDList[deviceID];
 	
@@ -1092,7 +1092,7 @@ bool videoInput::setVideoSettingFilterPct(int deviceID, long Property, float pct
 		float halfStep 	= (float)stepAmnt * 0.5;
 		if( mod < halfStep ) rasterValue -= mod;
 		else rasterValue += stepAmnt - mod;	
-		printf("RASTER - pctValue is %f - value is %i - step is %i - mod is %i - rasterValue is %i\n", pctValue, value, stepAmnt, mod, rasterValue); 
+		printf("RASTER - pctValue is %f - value is %li - step is %li - mod is %li - rasterValue is %li\n", pctValue, value, stepAmnt, mod, rasterValue); 
 	}
 		
 	return setVideoSettingFilter(deviceID, Property, rasterValue, Flags, false);
@@ -1104,7 +1104,7 @@ bool videoInput::setVideoSettingFilter(int deviceID, long Property, long lValue,
 	if( !isDeviceSetup(deviceID) )return false;
 
 	HRESULT hr;	
-	bool isSuccessful = false;
+	//bool isSuccessful = false;
 	
 	videoDevice * VD = VDList[deviceID];
 	
@@ -1179,7 +1179,7 @@ bool videoInput::setVideoSettingCameraPct(int deviceID, long Property, float pct
 		float halfStep 	= (float)stepAmnt * 0.5;
 		if( mod < halfStep ) rasterValue -= mod;
 		else rasterValue += stepAmnt - mod;	
-		printf("RASTER - pctValue is %f - value is %i - step is %i - mod is %i - rasterValue is %i\n", pctValue, value, stepAmnt, mod, rasterValue); 
+		printf("RASTER - pctValue is %f - value is %li - step is %li - mod is %li - rasterValue is %li\n", pctValue, value, stepAmnt, mod, rasterValue); 
 	}
 	
 	return setVideoSettingCamera(deviceID, Property, rasterValue, Flags, false);
@@ -1227,7 +1227,7 @@ bool videoInput::getVideoSettingCamera(int deviceID, long Property, long &min, l
 	if( !isDeviceSetup(deviceID) )return false;
 
 	HRESULT hr;	
-	bool isSuccessful = false;
+	//bool isSuccessful = false;
 	
 	videoDevice * VD = VDList[deviceID];
 	
@@ -1299,7 +1299,7 @@ bool videoInput::restartDevice(int id){
 		stopDevice(id);
 
 		//set our fps if needed
-		if( avgFrameTime != -1){
+		if( avgFrameTime != -1UL){
 			VDList[id]->requestedFrameTime = avgFrameTime;
 		}
 
@@ -1342,7 +1342,7 @@ videoInput::~videoInput(){
 // ---------------------------------------------------------------------- 
 
 bool videoInput::comInit(){
-	HRESULT hr = NULL;
+	HRESULT hr 			= 0;
 
 	//no need for us to start com more than once
 	if(comInitCount == 0 ){
@@ -1471,8 +1471,8 @@ void videoInput::processPixels(unsigned char * src, unsigned char * dst, int wid
 	
 	if(!bRGB){
 		
-		int x = 0;
-		int y = 0;
+		//int x = 0;
+		//int y = 0;
 	
 		if(bFlip){
 			for(int y = 0; y < height; y++){
@@ -1657,8 +1657,8 @@ static bool setSizeAndSubtype(videoDevice * VD, int attemptWidth, int attemptHei
 	VIDEOINFOHEADER *pVih =  reinterpret_cast<VIDEOINFOHEADER*>(VD->pAmMediaType->pbFormat);
 
 	//store current size
-	int tmpWidth  = HEADER(pVih)->biWidth;
-	int tmpHeight = HEADER(pVih)->biHeight;	
+	//int tmpWidth  = HEADER(pVih)->biWidth;
+	//int tmpHeight = HEADER(pVih)->biHeight;	
 	AM_MEDIA_TYPE * tmpType = NULL;
 	
 	HRESULT	hr = VD->streamConf->GetFormat(&tmpType);
@@ -1701,7 +1701,7 @@ static bool setSizeAndSubtype(videoDevice * VD, int attemptWidth, int attemptHei
 
 int videoInput::start(int deviceID, videoDevice *VD){
 
-	HRESULT hr 			= NULL;
+	HRESULT hr 			= 0;
 	VD->myID 			= deviceID;
 	VD->setupStarted	= true;
     CAPTURE_MODE   		= PIN_CATEGORY_CAPTURE; //Don't worry - it ends up being preview (which is faster)

@@ -49,7 +49,9 @@
 
 // Disable warning message for C4201 - use of nameless struct/union
 // Otherwise, strmif.h will generate warnings for Win32 debug builds
+#ifdef _MSC_VER
 #pragma warning( disable : 4201 )  
+#endif
 
 #include <mmsystem.h>
 
@@ -134,7 +136,9 @@ typedef struct {
 ///////////////////////////////////////////////////////////////////////////
 
 
+#ifdef _MSC_VER
 #pragma warning(disable:4201) // warning C4201: nonstandard extension used : nameless struct/union
+#endif
 #include <strmif.h>     // Generated IDL header file for streams interfaces
 
 #include <reftime.h>    // Helper class for REFERENCE_TIME management

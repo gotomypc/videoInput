@@ -39,10 +39,10 @@ protected:
 
     // if you want to override GetThreadMsg to block on other things
     // as well as this queue, you need access to this
+    LONG                      m_lWaiting;
+    HANDLE                    m_hSem;
     CGenericList<CMsg>        m_ThreadQueue;
     CCritSec                  m_Lock;
-    HANDLE                    m_hSem;
-    LONG                      m_lWaiting;
 
 public:
     CMsgThread()
@@ -51,7 +51,7 @@ public:
         m_lWaiting(0),
         m_hSem(NULL),
         // make a list with a cache of 5 items
-        m_ThreadQueue(NAME("MsgThread list"), 5)
+        m_ThreadQueue(NAME(const_cast<TCHAR*>("MsgThread list")), 5)
         {
         }
 

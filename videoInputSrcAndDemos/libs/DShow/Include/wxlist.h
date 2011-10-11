@@ -157,8 +157,8 @@ public:
         };
     private:
         INT m_iCacheSize;
-        INT m_iUsed;
         CNode *m_pHead;
+        INT m_iUsed;
     };
 
 protected:

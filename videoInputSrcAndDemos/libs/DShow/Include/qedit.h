@@ -1,5 +1,7 @@
 
+#ifdef _MSC_VER
 #pragma warning( disable: 4049 )  /* more than 64k source lines */
+#endif
 
 /* this ALWAYS GENERATED file contains the definitions for the interfaces */
 
@@ -23,6 +25,10 @@
 
 #include "rpc.h"
 #include "rpcndr.h"
+
+#ifndef _MSC_VER
+#define EXTERN_GUID(itf,l1,s1,s2,c1,c2,c3,c4,c5,c6,c7,c8) EXTERN_C const IID itf
+#endif
 
 #ifndef __RPCNDR_H_VERSION__
 #error this stub requires an updated version of <rpcndr.h>
